@@ -19,8 +19,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminAccountController extends AbstractController
-{
-    
+{  
     /**
      * Permet d'afficher la liste des users
      * @Route("/admin/users", name="admin.user.index", methods={"GET"})
@@ -33,7 +32,5 @@ class AdminAccountController extends AbstractController
             'menu' => 'adminUser'
         ]);
     }
-
-
 
 }

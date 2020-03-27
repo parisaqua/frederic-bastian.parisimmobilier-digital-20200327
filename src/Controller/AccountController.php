@@ -44,7 +44,7 @@ class AccountController extends AbstractController
     }
 
     /**
-     * Permet d'affciher le formulaire d'inscription
+     * Permet d'afficher le formulaire d'inscription
      * @Route("/register", name="account.register")
      * @return response
      */
@@ -98,13 +98,6 @@ class AccountController extends AbstractController
      */
     public function profile(Request $request, EntityManagerInterface $manager): Response {
         $user= $this->getUser();
-        // $currentAvatar = $user->getAvatar();
-
-        // if(!empty($currentAvatar)){
-
-        //     $avatarPath = ($this->getParameter('avatar_directory') . DIRECTORY_SEPARATOR . $user->getAvatar());
-            
-        // }
 
         $form = $this->createForm(AccountType::class, $user);
         $form->handleRequest($request);
