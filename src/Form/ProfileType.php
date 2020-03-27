@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Profile;
 use Symfony\Component\Form\AbstractType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,24 +14,28 @@ class ProfileType extends  AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
+
         $builder
             ->add('description', TextareaType::class, [
                 'required' => false,
-                'label' => "Décrivez-vous en quelques lignes ...",
+                'label' => "Présentation",
                 'attr' => [
-                    'placeholder' => 'Présentez vous en quelques mots. Seuls les membres d\'Immo Digital pourront voir votre prose.',
-                    'rows' => 8, 
+                    'placeholder' => 'Présentez-vous en quelques mots...'."\n" .'Seuls les membres d\'Immo Digital pourront voir votre prose.',
+                    'rows' => 6, 
                     'cols' => 100
                 ]
             ])
-            ->add('imageFile', VichImageType::class, [
+            ->add('imageFile', VichFileType::class, [
                 'required' => false,
+                'label' => false,
                 'allow_delete' => true,
-                'download_label' => 'Téléchargement',
+                // 'download_label' => 'Téléchargement',
                 'download_uri' => false,
-                'image_uri' => false,
-                'imagine_pattern' => 'avatar', //nom dans Liip_image
+                // 'image_uri' => false,
+                // 'imagine_pattern' => 'avatar', //nom dans Liip_image
                 'asset_helper' => true,
+                'delete_label' => 'Supprimer l\'image ?'
                 
             ]);
     }

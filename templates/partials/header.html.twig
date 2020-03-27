@@ -45,7 +45,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownLink">
           <a href="{{ path('account.show') }}" class="dropdown-item">Mon compte</a>
-              <a href="{{ path('account.profile') }}" class="dropdown-item">Modifier mon compte</a>
+              <a href="{{ path('profile.edit', {id: app.user.profile.id}) }}" class="dropdown-item">Modifier mon compte</a>
               <a href="{{ path('account.password') }}" class="dropdown-item">Modifier mon mot de passe</a>
               <div class="dropdown-divider"></div>
               <a href="#" class="dropdown-item">Mes biens</a>

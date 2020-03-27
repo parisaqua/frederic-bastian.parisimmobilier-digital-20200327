@@ -2,23 +2,46 @@
    
 
 <div class="container">
-    <h1 class="pt-3">Modifier mon profil</h1>
-
+    <h1 class="pt-3"><i class="fas fa-user-cog pb-2"></i>&nbsp;&nbsp;Modification du profil</h1>
+</div>
+<div class="container alert alert-light mt-3"> 
     <div class="row pt-3">
-        <div class="col-md-6"><p>Téléphones, ...</p></div>
-        <div class="col-md-6"> {{ form_row(form.description) }}</div>
+        <div class="col-md-12">
+            <p class="text-primary h3">{{app.user.genderType}} {{app.user.firstName}} {{app.user.lastName|upper}}</p>
+            <p class="text-primary h5">{{app.user.email}}&nbsp;&nbsp;<span class="text-info"><a href="{{ path('account.profile') }}" title="Modifier mes informations d'identification ..."><i class="fas fa-edit text-info h5"></i></a></span></p>
+        </div>
+    </div>
     
+    <div class="row pt-3 align-items-center">
+        <div class="col-md-4"><p>Téléphones, ...</p></div>
+        <div class="col-md-5">{{ form_row(form.description) }}</div>
+        <div class="col-md-3">
+            <div style="max-width: 170px; display: block; margin: 0 auto;">
+                {% if profile.imageName %}
+                    <img alt="photo de {{ profile.user.username }}" class="avatar" src=" {{  vich_uploader_asset(profile.user.profile, 'imageFile') | imagine_filter('avatar') }}">
+                {% else %}
+                    {% if profile.user.gender == 0 %}
+                        <img alt="photo de {{ profile.user.fullName }}" class="avatar" src=" {{  '/images/male-avatar.png' | imagine_filter('avatar') }}" alt="Avatar">
+                    {% else %}
+                        <img alt="photo de {{ profile.user.fullName }}" class="avatar" src=" {{  '/images/woman-avatar.png' | imagine_filter('avatar') }}" alt="Avatar">
+                    {% endif %}
+                {% endif %}
+                <div class="pt-2">
+                    {{ form_row(form.imageFile) }}
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6"></div>
-        <div class="col-md-6"></div>
-    </div>
 
     {{ form_widget(form) }}
+    <div class="row">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-success btn-center"> <i class="fas fa-check"></i> Enregistrer les modifications</button>
+        </div>
+    </div>
     
-
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {# <button class="btn">{{ button_label|default('Save') }}</button> #}
     {{ form_end(form) }}
 
 </div>
