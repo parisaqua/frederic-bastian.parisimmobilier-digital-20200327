@@ -110,6 +110,11 @@ class User implements UserInterface
      */
     private $avatarFile;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Profile", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $profile;
+
     public function __construct()
     {
         $this->properties = new ArrayCollection();
@@ -347,6 +352,23 @@ class User implements UserInterface
             if ($propertiesManaged->getManager() === $this) {
                 $propertiesManaged->setManager(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getProfile(): ?Profile
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(Profile $profile): self
+    {
+        $this->profile = $profile;
+
+        // set the owning side of the relation if necessary
+        if ($profile->getUser() !== $this) {
+            $profile->setUser($this);
         }
 
         return $this;
