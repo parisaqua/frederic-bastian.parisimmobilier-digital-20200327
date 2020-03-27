@@ -92,7 +92,7 @@ class AccountController extends AbstractController
 
     /**
      * Permet de modifier le formulaire de modification de profil
-     * @Route("account/profile", name="account.profile")
+     * @Route("account/edition", name="account.profile")
      * @IsGranted("ROLE_USER")
      * @return Response
      */
