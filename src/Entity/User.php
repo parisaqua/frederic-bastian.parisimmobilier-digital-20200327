@@ -78,12 +78,6 @@ class User implements UserInterface
     public $passwordConfirm;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     * @Assert\Length(min=10, minMessage="Ne peut être inférieur à 10 caractères")
-     */
-    private $presentation;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Property", mappedBy="author")
      */
     private $properties;
@@ -98,17 +92,6 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Property", mappedBy="manager")
      */
     private $propertiesManaged;
-
-    /**
-     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" }),
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $avatar;
-
-    /**
-     * @Vich\UploadableField(mapping="user_avatar", fileNameProperty="avatar")
-     */
-    private $avatarFile;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Profile", mappedBy="user", cascade={"persist", "remove"})
@@ -209,35 +192,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function setAvatarFile(? File $avatar = null) : void {
-        $this->avatarFile = $avatar;
- 
-        if (null !== $avatar) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
-        }
-    }
- 
- 
-    public function getAvatarFile() : ? File {
-            return $this->avatarFile;
-    }
-    
-    
-    public function getAvatar(){
-            return $this->avatar;
-    }
-    
-    /**
-     * @param File|UploadedFile $image
-     */
-    public function setAvatar($avatar) {
-        $this->avatar = $avatar;
-        return $this->avatar;
-    }
-
-
     public function getHash(): ?string
     {
         return $this->hash;
@@ -249,19 +203,6 @@ class User implements UserInterface
 
         return $this;
     }
-
-    public function getPresentation(): ?string
-    {
-        return $this->presentation;
-    }
-
-    public function setPresentation(?string $presentation): self
-    {
-        $this->presentation = $presentation;
-
-        return $this;
-    }
-
 
     /**
      * @return Collection|Property[]

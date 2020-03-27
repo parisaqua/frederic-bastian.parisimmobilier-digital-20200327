@@ -3,20 +3,26 @@
     <div class="card-body">
     <div class="row align-items-center">
         <div class="col-md-4 text-center">
-            {% if user.avatar %}
-                <img alt="photo de {{ user.username }}" class="avatar" src=" {{  vich_uploader_asset(user, 'avatarFile') | imagine_filter('avatar') }}">
-            {% else %}
+            {# {% if user.profile.avatar %}
+                <img alt="photo de {{ user.username }}" class="avatar" src=" {{  vich_uploader_asset(profile, 'avatarFile') | imagine_filter('avatar') }}">
+            {% else %} #}
                 {% if user.gender == 0 %}
                     <img alt="photo de {{ user.fullName }}" class="avatar" src=" {{  '/images/male-avatar.png' | imagine_filter('avatar') }}" alt="Avatar du gestionnaire" title="{{ user.fullName }}">
                 {% else %}
                     <img alt="photo de {{ user.fullName }}" class="avatar" src=" {{  '/images/woman-avatar.png' | imagine_filter('avatar') }}" alt="Avatar du gestionnaire" title="{{ user.fullName }}">
                 {% endif %}
-            {% endif %}
+            {# {% endif %} #}
         </div>
         <div class="col-md-8">
-            <p class="card-title">{{app.user.email}}</p>
+            <p class="card-title">{{user.email}}</p>
             <p class="card-title">00-00-00-00-00</p>
-            <p class="card-text mt-2"></p>
+            {% if user.profile %}
+                {% if user.profile.description %}
+                    <p class="text-left text-info pl-2">{{user.profile.description|nl2br }}</p> 
+                {% endif %}
+            {% else %}
+            <p>Pas de description</p>
+            {% endif %}
         </div>
     </div>
     <div class="row">

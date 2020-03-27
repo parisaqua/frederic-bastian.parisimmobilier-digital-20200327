@@ -3,15 +3,15 @@
     <div class="card-body">
     <div class="row align-items-center text-center">
         <div class="col-md-4">
-            {% if user.avatar %}
-                <img alt="photo de {{ user.username }}" class="avatar" src=" {{  vich_uploader_asset(user, 'avatarFile') | imagine_filter('avatar') }}">
-            {% else %}
+            {# {% if user.profile.avatar %}
+                <img alt="photo de {{ user.username }}" class="avatar" src=" {{  vich_uploader_asset(profile, 'avatarFile') | imagine_filter('avatar') }}">
+            {% else %} #}
                 {% if user.gender == 0 %}
                     <img alt="photo de {{ user.fullName }}" class="avatar" src=" {{  '/images/male-avatar.png' | imagine_filter('avatar') }}" alt="Avatar du gestionnaire" title="{{ user.fullName }}">
                 {% else %}
                     <img alt="photo de {{ user.fullName }}" class="avatar" src=" {{  '/images/woman-avatar.png' | imagine_filter('avatar') }}" alt="Avatar du gestionnaire" title="{{ user.fullName }}">
                 {% endif %}
-            {% endif %}
+            {# {% endif %} #}
             <hr>
             {% for role in user.roles %}
                 {% if role == 'ROLE_ADMIN' %}
@@ -26,11 +26,11 @@
             {% endfor %}
         </div>
         <div class="col-md-8">
-            <h4 class="card-title">{{app.user.email}}</h4>
+            <h4 class="card-title">{{user.email}}</h4>
             <h4 class="card-title">00-00-00-00-00</h4>
             <p class="card-text mt-2">
-                {% if app.user.presentation %}
-                    {{app.user.presentation|nl2br }}
+                {% if user.profile.description %}
+                    <p class="text-left text-info pl-2">{{user.profile.description|nl2br }}</p> 
                 {% else %}
                     <p class="text-info">Présentez-vous en quelques mots. Cliquez sur " <a href="{{ path('account.profile') }}">Modifier mon profil</a> " !</p>
                     <p class="text-center text-info h3"><i class="fas fa-angle-double-down"></i></p>

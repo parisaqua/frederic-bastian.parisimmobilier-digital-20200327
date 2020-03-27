@@ -40,20 +40,20 @@
             <hr>
             <div class="row">
                 <div class="col-md-4 text-center">
-                    {% if user.avatar %}
-                        <img alt="photo de {{ user.username }}" style="max-width: 150px; height:auto;" class="avatar" src=" {{  vich_uploader_asset(user, 'avatarFile') | imagine_filter('avatar') }}">
-                    {% else %}
+                    {# {% if user.profile.avatar %}
+                        <img alt="photo de {{ user.username }}" style="max-width: 150px; height:auto;" class="avatar" src=" {{  vich_uploader_asset(profile, 'avatarFile') | imagine_filter('avatar') }}">
+                    {% else %} #}
                         {% if user.gender == 0 %}
                             <img alt="photo de {{ user.fullName }}" style="max-width: 150px; height:auto;" class="avatar" src=" {{  '/images/male-avatar.png' | imagine_filter('avatar') }}" alt="Avatar du gestionnaire" title="{{ user.fullName }}">
                         {% else %}
                             <img alt="photo de {{ user.fullName }}" style="max-width: 150px; height:auto;" class="avatar" src=" {{  '/images/woman-avatar.png' | imagine_filter('avatar') }}" alt="Avatar du gestionnaire" title="{{ user.fullName }}">
                         {% endif %}
-                    {% endif %}
+                    {# {% endif %} #}
                     <hr>
-                    {{ form_row(form.avatar) }}
+                    {# {{ form_row(form.avatar) }} #}
                 </div>
                 <div class="col-md-8">
-                    {{ form_row(form.presentation) }}
+                    {# {{ form_row(form.presentation) }} #}
                 </div>
             </div>
             <div class="row">

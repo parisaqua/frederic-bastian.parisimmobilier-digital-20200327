@@ -98,31 +98,31 @@ class AccountController extends AbstractController
      */
     public function profile(Request $request, EntityManagerInterface $manager): Response {
         $user= $this->getUser();
-        $currentAvatar = $user->getAvatar();
+        // $currentAvatar = $user->getAvatar();
 
-        if(!empty($currentAvatar)){
+        // if(!empty($currentAvatar)){
 
-            $avatarPath = ($this->getParameter('avatar_directory') . DIRECTORY_SEPARATOR . $user->getAvatar());
-            //$user->setAvatar(new File($avatarPath));
-        }
+        //     $avatarPath = ($this->getParameter('avatar_directory') . DIRECTORY_SEPARATOR . $user->getAvatar());
+            
+        // }
 
         $form = $this->createForm(AccountType::class, $user);
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()){
             
-            $avatar = $user->getAvatar();
+            // $avatar = $user->getAvatar();
 
-            if(!is_null($avatar)){
-                $file = $user->getAvatar();
-                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            // if(!is_null($avatar)){
+            //     $file = $user->getAvatar();
+            //     $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
 
-                $file->move($this->getParameter('avatar_directory'), $fileName);
-                $user->setAvatar($fileName);
+            //     $file->move($this->getParameter('avatar_directory'), $fileName);
+            //     $user->setAvatar($fileName);
 
-            } else{
-                $user->setAvatar($currentAvatar);
-            }
+            // } else{
+            //     $user->setAvatar($currentAvatar);
+            // }
             
             $manager->persist($user);
             $manager->flush();
@@ -137,7 +137,7 @@ class AccountController extends AbstractController
 
         return $this->render('account/profile.html.twig', [
             'user' => $user,
-            'avatar'=>$currentAvatar,
+            // 'avatar'=>$currentAvatar,
             'form' => $form->createView()
         ]);
 

@@ -23,20 +23,20 @@ class AccountType extends AbstractType
             ->add('firstName', TextType::class, ['label' => 'First Name'])
             ->add('lastName', TextType::class, ['label' => 'Last Name'])
             ->add('email', EmailType::class, ['label' => 'Email'])
-            ->add('presentation', TextareaType::class, [
-                'label' => 'Presentation',
-                'required' => false,
-                'attr' => [
-                    'placeholder' => 'Présentez vous en quelques mots. Seuls les membres d\'Immo Digital pourront voir votre prose.',
-                    'rows' => 5, 
-                    'cols' => 100
-                ]
-                ])
-            ->add('avatar', FileType::class, [
-                'data_class' => null,
-                'required'=>false,
-                'label' => false,
-                ])
+            // ->add('presentation', TextareaType::class, [
+            //     'label' => 'Presentation',
+            //     'required' => false,
+            //     'attr' => [
+            //         'placeholder' => 'Présentez vous en quelques mots. Seuls les membres d\'Immo Digital pourront voir votre prose.',
+            //         'rows' => 5, 
+            //         'cols' => 100
+            //     ]
+            //     ])
+            // ->add('avatar', FileType::class, [
+            //     'data_class' => null,
+            //     'required'=>false,
+            //     'label' => false,
+            //     ])
         ;
     }
 
