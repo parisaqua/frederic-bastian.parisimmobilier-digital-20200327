@@ -111,19 +111,6 @@ class AccountController extends AbstractController
         
         if($form->isSubmitted() && $form->isValid()){
             
-            // $avatar = $user->getAvatar();
-
-            // if(!is_null($avatar)){
-            //     $file = $user->getAvatar();
-            //     $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-
-            //     $file->move($this->getParameter('avatar_directory'), $fileName);
-            //     $user->setAvatar($fileName);
-
-            // } else{
-            //     $user->setAvatar($currentAvatar);
-            // }
-            
             $manager->persist($user);
             $manager->flush();
 

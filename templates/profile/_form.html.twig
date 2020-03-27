@@ -1,4 +1,24 @@
 {{ form_start(form) }}
+   
+
+<div class="container">
+    <h1 class="pt-3">Modifier mon profil</h1>
+
+    <div class="row pt-3">
+        <div class="col-md-6"><p>Téléphones, ...</p></div>
+        <div class="col-md-6"> {{ form_row(form.description) }}</div>
+    
+    </div>
+
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6"></div>
+    </div>
+
     {{ form_widget(form) }}
+    
+
     <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    {{ form_end(form) }}
+
+</div>

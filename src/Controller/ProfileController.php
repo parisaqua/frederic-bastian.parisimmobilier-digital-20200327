@@ -15,18 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProfileController extends AbstractController
 {
-    /**
-     * @Route("/", name="profile_index", methods={"GET"})
-     */
-    public function index(ProfileRepository $profileRepository): Response
-    {
-        return $this->render('profile/index.html.twig', [
-            'profiles' => $profileRepository->findAll(),
-        ]);
-    }
+    // /**
+    //  * @Route("/", name="profile_index", methods={"GET"})
+    //  */
+    // public function index(ProfileRepository $profileRepository): Response
+    // {
+    //     return $this->render('profile/index.html.twig', [
+    //         'profiles' => $profileRepository->findAll(),
+    //     ]);
+    // }
 
     /**
-     * @Route("/new", name="profile_new", methods={"GET","POST"})
+     * @Route("/new", name="profile.new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -42,7 +42,7 @@ class ProfileController extends AbstractController
             $entityManager->persist($profile);
             $entityManager->flush();
 
-            return $this->redirectToRoute('profile_index');
+            return $this->redirectToRoute('account.show');
         }
 
         return $this->render('profile/new.html.twig', [
@@ -52,7 +52,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="profile_show", methods={"GET"})
+     * @Route("/{id}", name="profile.show", methods={"GET"})
      */
     public function show(Profile $profile): Response
     {
@@ -62,7 +62,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="profile_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="profile.edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Profile $profile): Response
     {
@@ -72,7 +72,7 @@ class ProfileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('profile_index');
+            return $this->redirectToRoute('account.show');
         }
 
         return $this->render('profile/edit.html.twig', [
@@ -92,6 +92,6 @@ class ProfileController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('profile_index');
+        return $this->redirectToRoute('account.show');
     }
 }
