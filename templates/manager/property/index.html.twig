@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Gérer les biens{% endblock %}
+
+{% block body %}
+
+
+<div class="container mt-4">
+    
+    <div class="row align-items-center mb-3">
+        <div class="col-md-8">
+            <h1>Gérer les biens</h1>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ path('property.manager.new')}}" class="btn btn-info btn-right mb-2">Ajouter un bien</a>
+        </div>
+    </div>
+   
+ 
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Gestionnaire</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for property in properties %}
+            <tr>
+                <td>
+                    <a href=" {{path('property.show', {id: property.id, slug: property.slug})}} ">
+                        {% if property.picture %}
+                            <img src="{{ vich_uploader_asset(property.picture, 'imageFile') | imagine_filter('minithumb') }}" alt="card-img-top" style="width: 60px; height:auto;">
+                        {% else %}
+                            <img src="{{'/images/default-property.jpg' | imagine_filter('minithumb')}}" alt="card-img-top" style="width: 60px; height:auto;">
+                        {% endif %}
+                    </a>
+                </td>
+                <td><a href=" {{path('property.show', {id: property.id, slug: property.slug})}} ">{{ property.title }}</a> </td>
+                <td>{{ property.rooms }} pièces à {{ property.city }}-{{ property.postalCode }}</td>
+                <td>{{ property.manager.fullName}}</td>
+                <td>
+                    {% if app.user and is_granted('ROLE_ADMIN') %}
+                    <a href=" {{ path('admin.property.manager.edit', {id: property.id}) }} " class="btn btn-info">Editer</a>
+                    {% elseif app.user and app.user == property.manager %}
+                    <a href=" {{ path('property.manager.edit', {id: property.id}) }} " class="btn btn-info">Editer</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(properties) }}
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            {% if properties|length < 1 %}
+                <h4 class="text-center">Vous n'avez aucun bien d'enregistrer. Ajoutez un bien !</h4>
+            {% endif %}
+        </div>
+    </div>
+
+</div> 
+
+{% endblock %}

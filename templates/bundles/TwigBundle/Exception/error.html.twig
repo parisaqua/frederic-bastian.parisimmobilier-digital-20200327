@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    <div class="container">
+    
+    <h1 class="my-4">OOPS, l'application a rencontré un problème !</h1>
+
+    <p>
+        Veuillez contacter l'administrateur. 
+    </p>
+
+    <a href="{{ path('home_page') }}" class="btn btn-info">Revenir à la page d'accueuil</a>
+    
+    
+    </div>
+{% endblock %}

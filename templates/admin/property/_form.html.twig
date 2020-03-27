@@ -1,0 +1,70 @@
+{{ form_start(form) }}
+    <div class="row align-items-end">
+        <div class="col-md-4">
+            {{ form_row(form.title) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(form.surface) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(form.price) }}
+        </div>
+    </div>
+    <div class="row align-items-end">
+        <div class="col-md-2">
+            {{ form_row(form.rooms) }}
+        </div>
+         <div class="col-md-2">
+            {{ form_row(form.bedrooms) }}
+        </div>
+         <div class="col-md-2">
+            {{ form_row(form.heat) }}
+        </div>
+        <div class="col-md-2">
+            {{ form_row(form.floor) }}
+        </div>
+         <div class="col-md-2">
+            {{ form_row(form.sold) }}
+        </div>
+    </div>
+    <div class="row align-items-end">
+        <div class="col-md-6">
+            {{ form_row(form.address) }} 
+        </div>
+         <div class="col-md-4">
+            {{ form_row(form.city) }}
+        </div>
+        <div class="col-md-2">
+            {{ form_row(form.postalCode) }}
+        </div>
+    </div>
+    <div class="row align-items-start">
+        <div class="col-md-5">
+            {{ form_row(form.description) }}
+        </div>
+         <div class="col-md-3">
+            {{ form_row(form.options) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(form.manager) }}
+        </div>
+    </div>
+    <div class="row align-items-end mb-5">
+        <div class="col-md-4">
+            {{ form_row(form.pictureFiles) }}
+        </div>
+        <div class="col-md-8">
+            <div class="row flex justify-content-start flex-wrap">
+                {% for picture in property.pictures %}
+                    <div class="col" style="width: 100px; flex: none; margin: 5px;">
+                        <img src="{{ vich_uploader_asset(picture, 'imageFile') | imagine_filter('thumb') }}" width="100" alt="">
+                        <a href="{{ path('picture.manager.delete', {id: picture.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ picture.id )}}" class="btn btn-danger" style="display: block; width: 100px;" title="Supprimer"><i class="fas fa-times-circle"></i></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+   
+    {{ form_rest(form) }}
+    <button class="btn btn-success btn-center"> {{ button|default('Enregistrer') }} </button>
+    {{ form_end(form) }}

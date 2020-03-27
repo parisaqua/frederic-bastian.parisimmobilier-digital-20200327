@@ -1,0 +1,37 @@
+<div class="card border-primary mb-3" style="max-width: 30rem; display:block; margin:0 auto;">
+    <div class="card-header"> {{user.genderType}} {{user.firstName}} {{user.lastName|upper}}</div>
+    <div class="card-body">
+    <div class="row align-items-center">
+        <div class="col-md-4 text-center">
+            {% if user.avatar %}
+                <img alt="photo de {{ user.username }}" class="avatar" src=" {{  vich_uploader_asset(user, 'avatarFile') | imagine_filter('avatar') }}">
+            {% else %}
+                {% if user.gender == 0 %}
+                    <img alt="photo de {{ user.fullName }}" class="avatar" src=" {{  '/images/male-avatar.png' | imagine_filter('avatar') }}" alt="Avatar du gestionnaire" title="{{ user.fullName }}">
+                {% else %}
+                    <img alt="photo de {{ user.fullName }}" class="avatar" src=" {{  '/images/woman-avatar.png' | imagine_filter('avatar') }}" alt="Avatar du gestionnaire" title="{{ user.fullName }}">
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <p class="card-title">{{app.user.email}}</p>
+            <p class="card-title">00-00-00-00-00</p>
+            <p class="card-text mt-2"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <hr>
+            {% for role in user.roles %}
+                {% if role == 'ROLE_ADMIN' %}
+                    <div class="badge badge-secondary">Administrateur</div>
+                {% elseif role == 'ROLE_PROPERTYMANAGER' %}
+                    <div class="badge badge-secondary">Gestionnaire</div>
+                {% elseif role == 'ROLE_PROPERTYOWNER' %}
+                    <div class="badge badge-secondary">Propriétaire</div>
+                {% endif %}  
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+</div>

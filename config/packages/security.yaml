@@ -1,0 +1,53 @@
+security:
+    
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        users_in_memory: { memory: null }
+        in_database: 
+            entity: 
+                class: App\Entity\User
+                property: email
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: lazy
+            
+            provider: in_database
+
+            form_login:
+                login_path: account.login
+                check_path: account.login
+            
+            logout:
+                path: account.logout
+                target: home
+
+
+            # provider: users_in_memory
+            
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    role_hierarchy:
+        # Un admin hérite des droits d'auteur et de modérateur
+        # ROLE_GESTIONNAIRE: [ROLE_PROPRIETAIRE]
+        ROLE_ADMIN:        [ROLE_PROPERTYMANAGER]
+        # On garde ce rôle superadmin, il nous resservira par la suite
+        # ROLE_SUPER_ADMIN:  [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/manager, roles: ROLE_MANAGER }
+        - { path: ^/gestion, roles: ROLE_PROPERTYMANAGER }
+        - { path: ^/profile, roles: ROLE_USER }

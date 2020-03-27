@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Edition d'un bien{% endblock %}
+
+{% block body %}
+
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-9">
+            <h1>Editer le bien n° {{ property.id }}</h1>
+        </div>
+        <div class="col-md-3 text-right">
+            {% if app.user and is_granted('ROLE_ADMIN') %}
+                <form method="post" action="{{ path('property.manager.delete', {id: property.id}) }}" style="display: inline-block; margin-top: 5px" onSubmit="return confirm('Etes-vous certain ?')">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ property.id )}}">
+                    <button class="btn btn-danger">Supprimer le bien</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+   
+    <hr>
+ 
+   {{ include('manager/property/_form.html.twig', {form: form, button: 'Enregistrer les modifications' }) }}
+
+</div> 
+
+
+ 
+{% endblock %}

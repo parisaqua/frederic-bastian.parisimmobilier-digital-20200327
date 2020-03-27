@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Immobilier Digital {% block title %}{% endblock %}</title>
+
+        <link rel="stylesheet" href="/css/bootstrap.min.css"> {# {{ path('home_page') }} #}
+        <link rel="stylesheet" href="/css/select2.min.css">
+        <link rel="stylesheet" href="/css/mystyle.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+        {% block stylesheets %}  {{ encore_entry_link_tags('app') }} {% endblock %}
+    </head>
+    <body class="bodyimmo">
+        <div class="containerfb">
+            {% include 'partials/header.html.twig' %}
+            {% for label, messages in app.flashes %} {# affichage des message success ou danger#}
+                    <div style="display: block; margin: 0px auto; max-width : 800px; ">
+                        <div id="alert1" class="alert alert-dismissible alert-{{ label }} m-4 ">
+                            {% for message in messages %}
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ message | raw }} {# filtre raw permet la prise en comte du code html documentation dans twig#}
+                            {% endfor %}
+                        </div>
+                    </div>
+            {% endfor %}
+
+            {% block body %}
+            
+            
+            
+            {% endblock %}
+        </div>
+        {% include 'partials/footer.html.twig' %}
+
+        {# <script src="/js/jquery.min.js"></script> #}
+
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+        </script>
+
+
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        
+        {# <script src="/js/select2.min.js"></script> #}
+        {# <script>
+        $('select').select2();
+        </script> #}
+
+        {% block javascripts %}
+
+        {{ encore_entry_script_tags('app') }}
+
+        <script>
+        $("document").ready(function(){
+        setTimeout(function(){
+        $("div#alert1").remove();
+        }, 4000 ); // 4 secs
+        });
+        </script>
+        
+        {% endblock %}
+      
+    </body>
+</html>

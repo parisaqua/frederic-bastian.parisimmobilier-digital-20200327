@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    <div class="container">
+    
+    <h1 class="my-4">OOPS, vous n'avez pas le droit d'accèder à cette page.</h1>
+
+    <div class="alert alert-warning">
+        <h4 class="alert-heading">Info !</h4>
+        <p class="mb-0">  Demandez à l'administrateur d'activer ces droits si besoin.</p>
+    </div>
+    <div class="clearfix my-4 text-center">
+    <a href="{{ path('home_page') }}" class="btn btn-info">Revenir à la page d'accueuil</a>
+    </div>
+    
+    </div>
+{% endblock %}

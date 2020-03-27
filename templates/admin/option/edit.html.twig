@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Edition d'une option{% endblock %}
+
+{% block body %}
+
+
+<div class="container mt-4">
+    <h1>Editer l'option {{ option.name }}</h1>
+    <hr>
+ 
+   {{ include('admin/option/_form.html.twig', {form: form, button: 'Enregistrer les modifications' }) }}
+
+</div> 
+
+{% endblock %}

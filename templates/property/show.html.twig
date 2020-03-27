@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Détail d'un bien{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <div class="container">
+
+
+        {% if not form.vars.valid %}
+            <div class="alert alert-danger">
+            Des erreurs dans votre demande de contact !
+            </div>
+        {% endif %}
+
+
+        <div class="row">
+            <div class="col-md-8">
+                <div data-slider>
+                    {% if property.picture %}
+                        {% for picture in property.pictures %}
+                            <img src="{{ vich_uploader_asset(picture, 'imageFile') | imagine_filter('medium') }}" alt="card-img-top" style="width: 100%; height:auto;">
+                        {% endfor %}
+                    {% else %}
+                        <img src="{{ '/images/default-property.jpg' | imagine_filter('medium') }}" alt="card-img-top" style="width: 100%; height:auto;">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h2> {{ property.title }} </h2>
+                <h3> {{ property.rooms }} pièces - {{ property.surface | number_format(2,',', ' ') }} m² </h3>
+                <h1 class="text-info font-weight-bold">{{property.formatedPrice}} €</h1>
+                <a href="#" class="btn btn-primary" id="contactButton" {% if form.vars.submitted %} style="display: none;" {% endif %} >Contacter l'agence</a>
+                <div id="contactForm" class="mt-4" {% if not form.vars.submitted %} style="display: none;" {% endif %}>
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col">{{ form_row(form.firstname) }}</div>
+                        <div class="col">{{ form_row(form.lastname) }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">{{ form_row(form.phone) }}</div>
+                        <div class="col">{{ form_row(form.email) }}</div>
+                    </div>
+                    {{ form_rest(form) }}
+                    <div class="form-group">
+                        <button class="btn btn-success">Envoyer</button>
+                        <a href="#" class="btn btn-warning" id="annulButton" {% if not form.vars.submitted %} style="display: none;" {% endif %} >Annuler</a>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row mt-2 text-center">
+            <div class="col-md-8 h6"> {{ property.address }}</div>
+            <div class="col-md-4 h6 text-info font-weight-bold"> Gestionnaire : {{ property.manager.genderType}} {{ property.manager.fullName}}</div>
+        </div> 
+    </div>
+</div>
+<div class="container mt-4">    
+    <p>
+        {{ property.description | nl2br }}
+    </p>
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Caractéristiques</h2>
+            <table class="table table-striped">
+            <tr>
+                <td>Surface habitable</td>
+                <td>{{ property.surface | number_format(2,',', ' ') }} m²</td>
+            </tr>
+            <tr>
+                <td>Nombre de pièces</td>
+                <td> {{ property.rooms }} </td>
+            </tr>
+            <tr>
+                <td>Nombre de chambres</td>
+                <td> {{ property.bedrooms }} </td>
+            </tr>
+            <tr>
+                <td>Etage</td>
+                <td> {% if property.floor == 0 %} RDC {% else %} {{ property.floor }} {% endif %} </td>
+            </tr>
+            <tr>
+                <td>Chauffage</td>
+                <td> {{property.heatType}} </td>
+            </tr>
+            </table>
+        </div>
+        <div class="col-md-4 mb-4 pb-2">
+            <h2>Spécificités</h2>
+            <ul class="list-group">
+                {% for option in property.options %}
+                <li class="list-group-item">{{ option.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="map" style="width: 100%; height: 400px;" data-lat="{{property.lat}}" data-lng="{{property.lng}}"></div>
+    </div>
+
+    <div class="row mt-3 text-center">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <p>Bien créé le {{ property.createdAt|date('d-m-Y')}} 
+            
+                et mis à jour le {{ property.updatedAt|date('d-m-Y')}} 
+            
+            </p>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="row">
+        {% if app.user and app.user == property.manager or is_granted('ROLE_ADMIN') %}
+            <div class="col-md-6 text-center">
+                {% if app.user and is_granted('ROLE_ADMIN') %}
+                    <a href=" {{ path('admin.property.manager.edit', {id: property.id}) }} " class="btn btn-info">Editer</a>
+                {% elseif app.user and app.user == property.manager %}
+                    <a href=" {{ path('property.manager.edit', {id: property.id}) }} " class="btn btn-info">Editer</a>
+                {% endif %}
+
+            </div>
+            <div class="col-md-6 text-center">
+                    <a href=" {{ path('property.index') }} " class="btn btn-secondary">Retour à la liste</a>
+            </div>
+        {% else %}
+             <div class="col-md-12 text-center">
+                <a href=" {{ path('property.index') }} " class="btn btn-secondary">Retour à la liste</a>
+            </div>
+        {% endif %}
+    </div>
+
+
+</div>  
+
+
+
+
+
+
+{% endblock %}

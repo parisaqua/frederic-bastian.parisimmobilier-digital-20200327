@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Les biens{% endblock %}
+
+{% block body %}
+
+<div class="pt-4 bg-light">
+    <div class="container">
+        {{ form_start(form) }}
+        <div class="form-row align-items-center">
+            <div class="col-md-2">
+            {{ form_row(form.minSurface) }}
+            </div>
+            <div class="col-md-2">
+            {{ form_row(form.maxSurface) }}
+            </div>
+           
+            <div class="col">
+            {{ form_row(form.address, {id: 'search_address'}) }}
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-6 text-right">
+                        {{ form_label(form.distance) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_widget(form.distance) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row align-items-center">
+            <div class="col-md-1">
+                Options ?
+            </div>
+             <div class="col">
+                {{ form_row(form.options) }}
+            </div>
+            <div class="col-md-2 text-right">
+                <div class="form-group">
+                    <button class="btn btn-primary">Rechercher</button>
+                </div>
+            </div>
+        </div>
+      {{ form_end(form) }}
+    </div>
+    {# <div class="container">
+        {{ form_start(form) }}
+        <div class="form-row ">
+            <div class="col">
+                <div class="row align-items-end">
+                    <div class="col">
+                        {{ form_row((form.minSurface)) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row((form.maxSurface)) }}
+                    </div>
+                    <div class="col">
+                        <input type="text" value="" placeholder="Adresse souhaitée ?" class="form-control" id="search_address" style="margin: 15px 0px;"/>
+                    </div>
+                    <div class="col">
+                        {{ form_row((form.distance)) }}
+                    </div>
+                </div>
+                <div class="row align-items-end">
+                    <div class="col-md-9">
+                        {{ form_row((form.options)) }}
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-info btn-center">Rechercher</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div> #}
+</div>
+
+<div class="container mt-4">
+    <h1>Les biens</h1>
+     <div class="row flex">
+    {% for property in properties %}
+        {% include 'property/_property.html.twig' %}
+    {% endfor %}
+    </div>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(properties) }}
+    </div>
+</div>  
+
+
+{% endblock %}
