@@ -97,7 +97,7 @@ class AppFixtures extends Fixture
             $property
                 ->setTitle($faker->words(3, true))
                 ->setDescription($faker->sentences(3, true))
-                ->setSurface($faker->numberBetween(20, 489))
+                ->setSurface($faker->numberBetween(20, 250))
                 ->setRooms($faker->numberBetween(1, 10))
                 ->setBedrooms($faker->numberBetween(1, 4))
                 ->setFloor($faker->numberBetween(0, 8))

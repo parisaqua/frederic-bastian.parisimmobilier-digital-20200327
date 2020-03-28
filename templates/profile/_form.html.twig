@@ -13,19 +13,22 @@
     </div>
     
     <div class="row pt-3 align-items-center">
-        <div class="col-md-4"><p>Téléphones, ...</p></div>
-        <div class="col-md-5">{{ form_row(profileForm.description) }}</div>
+        <div class="col-md-3"><p>Téléphones, ...</p></div>
+        <div class="col-md-6">{{ form_row(profileForm.description) }}</div>
         <div class="col-md-3">
-            <div style="max-width: 170px; display: block; margin: 0 auto;">
-                {% if profile.imageName %}
-                    <img alt="photo de {{ profile.user.username }}" class="avatar" src=" {{  vich_uploader_asset(profile.user.profile, 'imageFile') | imagine_filter('avatar') }}">
-                {% else %}
-                    {% if app.user.gender == 0 %}
-                        <img alt="photo de {{ app.user.fullName }}" class="avatar" src=" {{  '/images/male-avatar.png' | imagine_filter('avatar') }}" alt="Avatar">
+            <div style="display: block; margin: 0 auto;">
+                <div id="currentAvatar" style="max-width: 200px; dislpay:block; margin: 0 auto;">
+                    {% if profile.imageName %}
+                        <img alt="photo de {{ profile.user.username }}" class="avatar" src=" {{  vich_uploader_asset(profile.user.profile, 'imageFile') | imagine_filter('avatar') }}">
                     {% else %}
-                        <img alt="photo de {{ app.user.fullName }}" class="avatar" src=" {{  '/images/woman-avatar.png' | imagine_filter('avatar') }}" alt="Avatar">
+                        {% if app.user.gender == 0 %}
+                            <img alt="photo de {{ app.user.fullName }}" class="avatar" src=" {{  '/images/male-avatar.png' | imagine_filter('avatar') }}" alt="Avatar">
+                        {% else %}
+                            <img alt="photo de {{ app.user.fullName }}" class="avatar" src=" {{  '/images/woman-avatar.png' | imagine_filter('avatar') }}" alt="Avatar">
+                        {% endif %}
                     {% endif %}
-                {% endif %}
+                </div>
+                <div id="previewAvatar" class="preview-frame" style="display: none;"><span class="preview-helper"></span><img src="" alt="" id="avatar" class="preview-image"></div>
                 <div class="pt-2">
                     {{ form_row(profileForm.imageFile) }}
                 </div>
@@ -33,12 +36,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <p>Test</p>
-            {# {% if profileForm.vars.data.profile_imageFile_file %}
-                Hello
-                <img src="{{ uploaded_asset(profileForm.vars.data.imagePath)|imagine_filter('squared_thumbnail_small') }}" height="100">
-            {% endif %} #}
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+            {# <img width="170" height="170" src="" alt="" id="avatar" class="preview-image"> #}
         </div>
     </div>
 

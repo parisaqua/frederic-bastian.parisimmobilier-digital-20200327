@@ -35,7 +35,12 @@ class ProfileType extends  AbstractType
                 // 'image_uri' => false,
                 // 'imagine_pattern' => 'avatar', //nom dans Liip_image
                 'asset_helper' => true,
-                'delete_label' => 'Supprimer l\'image ?'
+                'delete_label' => 'Supprimer l\'image actuelle ?',
+                
+                'attr' => [
+                    'onchange'    => 'previewFile()',
+                    'placeholder' => 'Une photo ?',
+                ]
                 
             ]);
     }

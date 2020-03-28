@@ -29,7 +29,6 @@ $('[data-slider]').slick({
   cssEase: 'linear'
 })
 
-
 //mise en place de l'autocomplétion des adresses
 let inputAddress = document.querySelector('#property_address')
 let adminInputAddress = document.querySelector('#admin_property_address')
@@ -56,20 +55,6 @@ if (adminInputAddress !== null) {
   })
 }
 
-//mise en place de l'autocomplétion des adresses pour l'admin
-// let adminInputAddress = document.querySelector('#admin_property_address')
-// if (adminInputAddress !== null) {
-//   let place = Places({
-//     container: adminInputAddress
-//   })
-//   place.on('change', e => {
-//     document.querySelector('#admin_property_city').value = e.suggestion.city
-//     document.querySelector('#admin_property_postalCode').value = e.suggestion.postcode
-//     document.querySelector('#admin_property_lat').value = e.suggestion.latlng.lat
-//     document.querySelector('#admin_property_lng').value = e.suggestion.latlng.lng
-//   })
-// }
-
 //Mise en place de la recherche
 let searchAddress = document.querySelector('#search_address')
 if (searchAddress !== null) {
@@ -81,7 +66,6 @@ if (searchAddress !== null) {
     document.querySelector('#lng').value = e.suggestion.latlng.lng
   })
 }
-
 
 // styler les selects de choix multiples avec select 2
 $(() => {
@@ -128,6 +112,27 @@ document.querySelectorAll('[data-delete]').forEach(a => {
       .catch(e => alert(e))
   })
 })
+
+//Image preview onload inputAddress
+
+var preview = document.getElementById('avatar')
+var file_input = document.getElementById('profile_imageFile_file')
+window.previewFile  = function ()
+{
+    let file = file_input.files[0]
+    let reader = new FileReader()
+    reader.addEventListener('load', function (event)
+    {
+      preview.src = reader.result
+    }, false)
+
+    if (file)
+    {
+      document.getElementById("currentAvatar").style.display = "none"
+      document.getElementById("previewAvatar").style.display = "block"
+      reader.readAsDataURL(file)
+    }
+}
 
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.

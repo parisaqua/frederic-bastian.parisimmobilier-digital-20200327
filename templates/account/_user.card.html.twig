@@ -41,7 +41,7 @@
                     {% if user.profile.description %}
                         <p class="text-left text-info pl-2">{{user.profile.description|nl2br }}</p> 
                     {% else %}
-                        <p class="text-info">Présentez-vous en quelques mots. Cliquez sur " <a href="{{ path('account.profile') }}">Modifier mon profil</a> " !</p>
+                        <p class="text-info">Présentez-vous en quelques mots. Cliquez sur " Modifier mon profil " !</p>
                         <p class="text-center text-info h3"><i class="fas fa-angle-double-down"></i></p>
                     {% endif %}
                 {% else %}
