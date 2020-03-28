@@ -4,7 +4,6 @@ liip_imagine:
     driver: "gd"
 
     filter_sets:
-                    
                     avatar:
                         quality: 75
                         filters:

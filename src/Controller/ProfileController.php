@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Profile;
 use App\Form\ProfileType;
 use App\Repository\ProfileRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/profile")
@@ -47,7 +49,7 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/new.html.twig', [
             'profile' => $profile,
-            'form' => $form->createView(),
+            'profileForm' => $form->createView(),
         ]);
     }
 
@@ -61,6 +63,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/{id}/edit", name="profile.edit", methods={"GET","POST"})
      */
@@ -70,14 +73,20 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash(
+                'success',
+                'Profil mis à jour !'
+            );
 
             return $this->redirectToRoute('account.show');
         }
 
         return $this->render('profile/edit.html.twig', [
             'profile' => $profile,
-            'form' => $form->createView(),
+            'profileForm' => $form->createView(),
         ]);
     }
 

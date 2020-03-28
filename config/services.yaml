@@ -25,6 +25,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    
     App\Listener\ImageCacheSubscriber:
+        arguments: ['@vich_uploader.storage.file_system', '@liip_imagine.cache.manager']
         tags:
-        - { name: doctrine.event_subscriber }
+            - { name: kernel.event_subscriber }

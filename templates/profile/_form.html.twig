@@ -1,4 +1,4 @@
-{{ form_start(form) }}
+{{ form_start(profileForm) }}
    
 
 <div class="container">
@@ -14,7 +14,7 @@
     
     <div class="row pt-3 align-items-center">
         <div class="col-md-4"><p>Téléphones, ...</p></div>
-        <div class="col-md-5">{{ form_row(form.description) }}</div>
+        <div class="col-md-5">{{ form_row(profileForm.description) }}</div>
         <div class="col-md-3">
             <div style="max-width: 170px; display: block; margin: 0 auto;">
                 {% if profile.imageName %}
@@ -27,20 +27,29 @@
                     {% endif %}
                 {% endif %}
                 <div class="pt-2">
-                    {{ form_row(form.imageFile) }}
+                    {{ form_row(profileForm.imageFile) }}
                 </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p>Test</p>
+            {# {% if profileForm.vars.data.profile_imageFile_file %}
+                Hello
+                <img src="{{ uploaded_asset(profileForm.vars.data.imagePath)|imagine_filter('squared_thumbnail_small') }}" height="100">
+            {% endif %} #}
+        </div>
+    </div>
 
 
-    {{ form_widget(form) }}
+    {{ form_widget(profileForm) }}
     <div class="row">
         <div class="col-md-12">
             <button type="submit" class="btn btn-success btn-center"> <i class="fas fa-check"></i> Enregistrer les modifications</button>
         </div>
     </div>
     
-    {{ form_end(form) }}
+    {{ form_end(profileForm) }}
 
 </div>
