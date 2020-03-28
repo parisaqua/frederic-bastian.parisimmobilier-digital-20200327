@@ -20,10 +20,10 @@
                 {% if profile.imageName %}
                     <img alt="photo de {{ profile.user.username }}" class="avatar" src=" {{  vich_uploader_asset(profile.user.profile, 'imageFile') | imagine_filter('avatar') }}">
                 {% else %}
-                    {% if profile.user.gender == 0 %}
-                        <img alt="photo de {{ profile.user.fullName }}" class="avatar" src=" {{  '/images/male-avatar.png' | imagine_filter('avatar') }}" alt="Avatar">
+                    {% if app.user.gender == 0 %}
+                        <img alt="photo de {{ app.user.fullName }}" class="avatar" src=" {{  '/images/male-avatar.png' | imagine_filter('avatar') }}" alt="Avatar">
                     {% else %}
-                        <img alt="photo de {{ profile.user.fullName }}" class="avatar" src=" {{  '/images/woman-avatar.png' | imagine_filter('avatar') }}" alt="Avatar">
+                        <img alt="photo de {{ app.user.fullName }}" class="avatar" src=" {{  '/images/woman-avatar.png' | imagine_filter('avatar') }}" alt="Avatar">
                     {% endif %}
                 {% endif %}
                 <div class="pt-2">
@@ -41,7 +41,6 @@
         </div>
     </div>
     
-    {# <button class="btn">{{ button_label|default('Save') }}</button> #}
     {{ form_end(form) }}
 
 </div>

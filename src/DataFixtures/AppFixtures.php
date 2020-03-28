@@ -31,8 +31,6 @@ class AppFixtures extends Fixture
                 ->setLastName('Bastian')
                 ->setEmail('julien@bastian.paris')
                 ->setHash($this->encoder->encodePassword($adminUser, 'password'))
-                //->setPicture('http://placehold.it/64x64')
-                ->setPresentation($faker->paragraph(3, true))
                 ->setRoles(array('ROLE_ADMIN'));
                 
         $manager->persist($adminUser);
@@ -58,12 +56,9 @@ class AppFixtures extends Fixture
                 ->setFirstName($faker->firstName($civilite))
                 ->setLastName($faker->lastname)
                 ->setEmail($faker->email)
-                ->setPresentation($faker->paragraph(3, true))
                 ->setHash($hash)
-                //->setPicture($picture);
                 ->setRoles(array('ROLE_PROPERTYMANAGER'));
                 
-
             $manager->persist($managerUser);
             $managerUsers[] = $managerUser;
 
@@ -94,7 +89,7 @@ class AppFixtures extends Fixture
 
         //Nous créons les propriétés
 
-        for($i = 0; $i < 60; $i++) {
+        for($i = 0; $i < 250; $i++) {
             $property = new Property();
 
             $user = $managerUsers[mt_rand(0, count($managerUsers) - 1)];

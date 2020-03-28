@@ -41,11 +41,28 @@
       {% if app.user %}
           <li class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="accountDropdownLink">  
-              {# <img src="{{app.user.avatar}}" class="avatar avatar-mini" alt="Avatar de {{app.user.fullName}}"> #} {{app.user.firstName}} {{app.user.lastName|upper}}
+            {% if app.user.profile %}
+                {% if app.user.profile.imageName %}
+                <img alt="photo de {{ app.user.username }}" class="menu-avatar" src=" {{  vich_uploader_asset(app.user.profile, 'imageFile') | imagine_filter('avatar') }}">
+                {% else %}
+                    {% if app.user.gender == 0 %}
+                        <img alt="photo de {{ app.user.fullName }}" class="menu-avatar" src=" {{  '/images/male-avatar.png' | imagine_filter('avatar') }}" alt="Avatar du gestionnaire" title="{{ app.user.fullName }}">
+                    {% else %}
+                        <img alt="photo de {{ app.user.fullName }}" class="menu-avatar" src=" {{  '/images/woman-avatar.png' | imagine_filter('avatar') }}" alt="Avatar du gestionnaire" title="{{ app.user.fullName }}">
+                    {% endif %}
+                {% endif %}
+            {% else %}
+            {% if app.user.gender == 0 %}
+                <img alt="photo de {{ app.user.fullName }}" class="menu-avatar" src=" {{  '/images/male-avatar.png' | imagine_filter('avatar') }}" alt="Avatar du gestionnaire" title="{{ app.user.fullName }}">
+                {% else %}
+                    <img alt="photo de {{ app.user.fullName }}" class="menu-avatar" src=" {{  '/images/woman-avatar.png' | imagine_filter('avatar') }}" alt="Avatar du gestionnaire" title="{{ app.user.fullName }}">
+                {% endif %}
+            {% endif %}
+            &nbsp;&nbsp;{{ app.user.fullName }}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownLink">
           <a href="{{ path('account.show') }}" class="dropdown-item">Mon compte</a>
-              <a href="{{ path('profile.edit', {id: app.user.profile.id}) }}" class="dropdown-item">Modifier mon compte</a>
+              <a href="{% if app.user.profile %}{{ path('profile.edit', {id: app.user.profile.id}) }}{% else %}{{ path('profile.new')}}{% endif %}" class="dropdown-item">Modifier mon compte</a>
               <a href="{{ path('account.password') }}" class="dropdown-item">Modifier mon mot de passe</a>
               <div class="dropdown-divider"></div>
               <a href="#" class="dropdown-item">Mes biens</a>

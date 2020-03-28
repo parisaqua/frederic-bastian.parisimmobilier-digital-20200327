@@ -17,7 +17,7 @@
         </div>
         <div class="row pt-4">
             <div class="col-md-1"></div>
-            <a href="{{ path('profile.edit', {id: user.profile.id}) }}" class="btn btn-info col-md-3 btn-center mt-2"><i class="fas fa-user-cog"></i>&nbsp;&nbsp;Modifier mon profile</a>
+            <a href="{% if app.user.profile %}{{ path('profile.edit', {id: user.profile.id}) }} {% else %}{{ path('profile.new') }}{% endif %}" class="btn btn-info col-md-3 btn-center mt-2"><i class="fas fa-user-cog"></i>&nbsp;&nbsp;Modifier mon profile</a>
             <div class="col-md-2"></div>
             <a href="{{ path('account.password') }}" class="btn btn-info col-md-3 btn-center mt-2"><i class="fas fa-lock"></i>&nbsp;&nbsp;Modifier mon mot de passe</a>
             <div class="col-md-1"></div>

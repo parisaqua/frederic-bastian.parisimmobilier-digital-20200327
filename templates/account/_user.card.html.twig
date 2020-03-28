@@ -34,7 +34,7 @@
             {% endfor %}
         </div>
         <div class="col-md-8">
-            <h4 class="card-title">{{user.email}}</h4>
+            <h4 class="card-title"><i class="fas fa-envelope text-info"></i>&nbsp;&nbsp;<a href="mailto:{{user.email}}" title="Ecrire à {{user.email}}">E-mail</a></h4>
             <h4 class="card-title">00-00-00-00-00</h4>
             <p class="card-text mt-2">
                 {% if user.profile %}
