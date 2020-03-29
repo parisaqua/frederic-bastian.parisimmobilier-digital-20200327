@@ -2,7 +2,16 @@
 {% block title %}Les individus{% endblock %}
 {% block body %}
     <div class="container">
-        <h1 class="mt-5 mb-4"><i class="fas fa-user"></i>&nbsp;&nbsp;Tous les individus</h1>
+        <div class="row align-items-center pt-5 mb-3">
+        <div class="col-md-8">
+            <h1><i class="fas fa-user"></i>&nbsp;&nbsp;Tous les individus</h1>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ path('admin.user.new')}}" class="btn btn-info btn-right mb-2">Ajouter un individu</a>
+        </div>
+    </div>
+        
+        
         <div class="row items-align-center">
             {% for user in users %} 
                 <div class="col-md-4">

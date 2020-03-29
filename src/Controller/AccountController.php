@@ -120,7 +120,6 @@ class AccountController extends AbstractController
             // 'avatar'=>$currentAvatar,
             'form' => $form->createView()
         ]);
-
     }
 
 

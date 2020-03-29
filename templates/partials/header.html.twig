@@ -1,20 +1,20 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
-  <a class="navbar-brand" href="{{ path('home') }}">Immobilier Digital</a>
+  <a class="navbar-brand" href="{{ path('home') }}"><img class="logo-menu" src="{{  '/images/logo-menu.png' }}" alt=""> Immobilier Digital</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      {# <li class="nav-item">
         <a class="nav-link {% if current_menu is defined and current_menu == 'accueil' %}active{% endif %}" href="{{ path('home') }}">Accueil</a>
-      </li>
+      </li> #}
       <li class="nav-item">
-        <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="{{ path('property.index') }}">Les Biens</a>
+        <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="{{ path('property.index') }}"><i class="fas fa-city"></i>&nbsp; Les Biens</a>
       </li>
        {% if app.user and is_granted('ROLE_PROPERTYMANAGER') or is_granted('ROLE_ADMIN') %}
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle {% if current_menu is defined and current_menu == 'manager' or current_menu is defined and current_menu == 'mymanager' %}active{% endif %}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Portefeuille</a>
+        <a class="nav-link dropdown-toggle {% if current_menu is defined and current_menu == 'manager' or current_menu is defined and current_menu == 'mymanager' %}active{% endif %}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-list-alt"></i>&nbsp;Portefeuille</a>
         <div class="dropdown-menu" style="">
           <a class="dropdown-item {% if current_menu is defined and current_menu == 'manager' %}active{% endif %}" href="{{ path('property.manager.index') }}">Tous les biens</a>
           <a class="dropdown-item {% if current_menu is defined and current_menu == 'mymanager' %}active{% endif %}" href="{{ path('myproperty.manager.index') }}">Mon portefeuille</a>
@@ -27,7 +27,7 @@
       {% if app.user and is_granted('ROLE_ADMIN') %}
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
+          <a class="nav-link dropdown-toggle {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cogs"></i>&nbsp;Administration</a>
           <div class="dropdown-menu" style="">
             <a class="dropdown-item {% if current_menu is defined and current_menu == 'admin' %}active{% endif %}" href="{{ path('admin.option.index') }}">Les options</a>
             <a class="dropdown-item {% if current_menu is defined and current_menu == 'adminUser' %}active{% endif %}" href="{{ path('admin.user.index') }}">Les individus</a>

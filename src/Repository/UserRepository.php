@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\User;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,11 +20,35 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    /**
+     * Liste des individus actifs par ordre alphabetique
+     * 
+     * @return User[]
+     */
+    public function findActive(): array
+    {
+        return $this->findActiveQuery()
+            // ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
+    
+    /**
+     * Fonction des individus actifs par ordre alphabetique
+     *
+     * @return QueryBuilder
+     */
+    public function findActiveQuery(): QueryBuilder {
+        return $this->createQueryBuilder('u')
+        // ->andWhere('u.active = true')
+        ->orderBy('u.lastName', 'ASC');
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
     /*
-    public function findByExampleField($value)
+    public function findByExampleField($value) 
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.exampleField = :val')

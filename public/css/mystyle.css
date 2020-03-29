@@ -2,6 +2,12 @@
     padding-top: 58px;
 }
 
+.logo-menu {
+    height: 25px;
+    width: auto;
+    margin: 0 10px 5px 0;
+}
+
 .containerfb {
     min-height: 80vh;
 }

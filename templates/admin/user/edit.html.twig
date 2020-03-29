@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification du profil{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    
+        <h1 class="my-4"><i class="fas fa-user-cog"></i>&nbsp;&nbsp;Modification du profil</h1>
+
+        {{ form_start(form) }}
+
+        <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 alert alert-light">
+            <div class="row"> 
+                <h2 class="alert-heading mb-3">Informations d'identification</h2>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-2">
+                    {{ form_row(form.gender) }}
+                </div>
+                <div class="col-md-5">
+                    {{ form_row(form.firstName) }}
+                </div>
+                <div class="col-md-5">
+                    {{ form_row(form.lastName) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.email) }}
+                </div>
+                 <div class="col-md-6">
+                    {{ form_row(form.roles) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center mt-3 mb-4">Si vous avez terminé vos modifications, vous pouvez les sauvegarder !</p>
+                </div> 
+            </div>
+            <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success btn-center"> <i class="fas fa-check"></i> Enregistrer les modifications</button>
+                {{ form_end(form) }}
+            </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        </div>   
+       
+
+     
+</div>
+
+{% endblock %}

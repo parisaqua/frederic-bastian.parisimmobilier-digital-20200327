@@ -129,8 +129,6 @@ class PropertyRepository extends ServiceEntityRepository
      */
     public function findVisibleQuery(): QueryBuilder {
         return $this->createQueryBuilder('p')
-        // ->select('p', 'pics')
-        // ->leftJoin('p.pictures', 'pics')
         ->andWhere('p.sold = false')
         ->orderBy('p.updated_at', 'DESC');
     }
