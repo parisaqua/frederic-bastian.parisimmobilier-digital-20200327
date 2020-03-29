@@ -24,7 +24,7 @@
                 <h2 class="alert-heading mb-3">Informations d'identification</h2>
             </div>
             <hr>
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-md-2">
                     {{ form_row(form.gender) }}
                 </div>
@@ -35,12 +35,15 @@
                     {{ form_row(form.lastName) }}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row align-items-center">
+                <div class="col-md-5">
                     {{ form_row(form.email) }}
                 </div>
-                 <div class="col-md-6">
+                 <div class="col-md-5">
                     {{ form_row(form.roles) }}
+                </div>
+                <div class="col-md-2">
+                    {{ form_row(form.isActive) }}
                 </div>
             </div>
             <div class="row">

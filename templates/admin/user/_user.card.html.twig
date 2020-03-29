@@ -1,5 +1,14 @@
 <div class="card border-primary mb-3" style="max-width: 30rem; display:block; margin:0 auto;">
-    <div class="card-header"> {{user.genderType}} {{user.firstName}} {{user.lastName|upper}} &nbsp; <span class="text-info"><a href="{{ path('admin.user.edit', {id: user.id}) }}" title="Modifier mes informations d'identification ..."><i class="fas fa-edit text-info h5"></i></a></span></div>
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-10">
+                  {{user.genderType}} {{user.firstName}} {{user.lastName|upper}} &nbsp; <span class="text-info"><a href="{{ path('admin.user.edit', {id: user.id}) }}" title="Modifier mes informations d'identification ..."><i class="fas fa-edit text-info h5"></i></a></span>
+            </div>
+            <div class="col-md-2">
+                {% if user.isActive %}<i class="fas fa-toggle-on text-success" title="Compte Actif"></i>{% else %}<i class="fas fa-toggle-off text-danger" title="Compte Inactif"></i>{% endif %}
+            </div>    
+        </div>
+    </div>
     <div class="card-body">
     <div class="row align-items-center">
         <div class="col-md-4 text-center">

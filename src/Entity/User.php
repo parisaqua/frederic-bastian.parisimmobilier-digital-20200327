@@ -111,12 +111,16 @@ class User implements UserInterface
     */
     private $token;
 
-   
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
 
     public function __construct()
     {
         $this->properties = new ArrayCollection();
         $this->propertiesManaged = new ArrayCollection();
+        $this->isActive = true;
     }
 
     /**
@@ -362,6 +366,14 @@ class User implements UserInterface
     {
         $this->token = $token;
         return $this;
+    }
+
+    function getIsActive() {
+        return $this->isActive;
+    }
+
+    function setIsActive($isActive) {
+        $this->isActive = $isActive;
     }
 
 
