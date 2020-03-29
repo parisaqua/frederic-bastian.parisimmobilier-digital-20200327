@@ -27,9 +27,9 @@ class AppFixtures extends Fixture
         $adminUser = new User();
         $adminUser
                 ->setGender(0)    
-                ->setFirstName('Julien')
+                ->setFirstName('Frédéric')
                 ->setLastName('Bastian')
-                ->setEmail('julien@bastian.paris')
+                ->setEmail('frederic@bastian.paris')
                 ->setHash($this->encoder->encodePassword($adminUser, 'password'))
                 ->setRoles(array('ROLE_ADMIN'));
                 

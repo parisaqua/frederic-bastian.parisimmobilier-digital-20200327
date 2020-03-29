@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
-  <a class="navbar-brand" href="{{ path('home') }}"><img class="logo-menu" src="{{  '/images/logo-menu.png' }}" alt=""> Immobilier Digital</a>
+  <a class="navbar-brand" href="{{ path('home') }}"><img class="logo-menu" src="{{  '/images/logo-menu2.png' }}" alt=""> Immobilier Digital</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -73,10 +73,10 @@
           </li>
       {% else %}
           <li class="nav-item">
-          <a href="{{ path('account.register')}}" class="nav-link">Inscription</a>        
+          <a href="{{ path('account.register')}}" class="nav-link"><i class="fas fa-user-plus"></i>&nbsp;Inscription</a>        
           </li>
           <li class="nav-item">
-          <a href="{{ path('account.login')}}" class="nav-link">Connexion</a>        
+          <a href="{{ path('account.login')}}" class="nav-link"><i class="fas fa-user-lock"></i>&nbsp;Connexion</a>        
           </li>
       {% endif %}
     </ul>

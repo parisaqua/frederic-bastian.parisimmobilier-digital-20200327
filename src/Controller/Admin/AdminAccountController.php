@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use Faker\Factory;
 use App\Entity\User;
+use App\Form\AccountType;
 use App\Entity\PasswordUpdate;
 use App\Form\AdminAccountType;
 use App\Form\PasswordUpdateType;
@@ -32,7 +34,7 @@ class AdminAccountController extends AbstractController
         ]);
     }
 
-        /**
+    /**
      * Permet d'afficher le profil de l'utilisateur connecté
      *
      * @Route("/account", name="account.show")
@@ -44,7 +46,6 @@ class AdminAccountController extends AbstractController
         return $this->render('account/show.html.twig', [
             'user' => $this->getUser()
         ]);
-
     }
 
     /**
@@ -54,13 +55,14 @@ class AdminAccountController extends AbstractController
      */
     public function register(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder){
         $user = new User();
+        
+        $faker = Factory::create('fr_FR');
 
         $form = $this->createForm(AdminAccountType::class, $user);
-
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid() ){
-            $hash = $encoder->encodePassword($user, $user->getHash());
+            $hash =  $encoder->encodePassword($user, $faker->password);
             $user->setHash($hash);
 
             $manager->persist($user);
@@ -106,6 +108,20 @@ class AdminAccountController extends AbstractController
             'user' => $user,
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+    * @Route("/admin/user/{id}", name="admin.user.delete", methods={"DELETE"})
+    */
+    public function delete(Request $request, User $user): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($user);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin.user.index');
     }
 
 
