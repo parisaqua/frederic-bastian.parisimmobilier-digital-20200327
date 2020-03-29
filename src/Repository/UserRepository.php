@@ -20,6 +20,17 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    
+    public function loadUserByUsername($username)
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.email = :email')
+            ->setParameter('email', $username)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+    
+    
     /**
      * Liste des individus actifs par ordre alphabetique
      * 
