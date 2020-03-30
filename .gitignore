@@ -16,6 +16,7 @@ public/media
 /public/bundles/
 /var/
 /vendor/
+/app/DataFixtures/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###

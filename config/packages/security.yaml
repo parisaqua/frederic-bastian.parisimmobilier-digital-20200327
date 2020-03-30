@@ -30,6 +30,7 @@ security:
 
 
             # provider: users_in_memory
+            user_checker: App\Security\UserChecker
             
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

@@ -20,7 +20,7 @@ class AccountController extends AbstractController
 {
     /**
      * Pour se sonnecter
-     * @Route("/login", name="account.login")
+     * @Route("/login", name="account.login") 
      * @return Response
      */
     public function login(AuthenticationUtils $utils)
