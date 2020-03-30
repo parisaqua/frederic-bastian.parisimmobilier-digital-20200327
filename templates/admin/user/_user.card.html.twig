@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <p class="card-title"><i class="fas fa-envelope text-info"></i>&nbsp;&nbsp;<a href="mailto:{{user.email}}" title="Envoyer un e-mail à {{user.fullName}} "><span class="h5 text-info">Lui écrire ...</span></a></p>
+            <p class="card-title"><i class="fas fa-envelope text-info"></i>&nbsp;&nbsp;<a href="mailto:{{user.email}}" title="Envoyer un e-mail à {{user.fullName}} - ({{user.email}}) "><span class="h5 text-info">Lui écrire ...</span></a></p>
             <p class="card-title"><i class="fas fa-mobile-alt text-info"></i>&nbsp;&nbsp;<span class="h5 text-info">00-00-00-00-00</span></p>
             {% if user.profile %}
                 {% if user.profile.description %}

@@ -120,7 +120,7 @@ class User implements UserInterface
     {
         $this->properties = new ArrayCollection();
         $this->propertiesManaged = new ArrayCollection();
-        $this->isActive = true;
+        $this->isActive = false;
     }
 
     /**

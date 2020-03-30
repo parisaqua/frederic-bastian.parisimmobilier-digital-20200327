@@ -117,7 +117,6 @@ class AccountController extends AbstractController
 
         return $this->render('account/profile.html.twig', [
             'user' => $user,
-            // 'avatar'=>$currentAvatar,
             'form' => $form->createView()
         ]);
     }

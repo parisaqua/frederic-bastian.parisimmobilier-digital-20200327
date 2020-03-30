@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 
 /**
- * @Route("/renouvellement-mot-de-passe")
+ * @Route("/confirmation-inscription")
  */
 class ConfirmationController extends AbstractController
 {

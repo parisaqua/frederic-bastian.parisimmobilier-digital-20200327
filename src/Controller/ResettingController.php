@@ -32,7 +32,8 @@ class ResettingController extends AbstractController
                 'constraints' => [
                     new Email(),
                     new NotBlank()
-                ]
+                ],
+                'label' => 'Renseignez votre adresse e-mail',
             ])
             ->getForm();
         $form->handleRequest($request);

@@ -17,7 +17,7 @@ class ResettingType extends AbstractType
             ->add('hash', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options' => array('label' => 'Nouveau mot de passe'),
-                'second_options' => array('label' => 'Confirmer le mot de passe'),
+                'second_options' => array('label' => 'Confirmer le nouveau mot de passe'),
                 'invalid_message' => 'Les 2 mots de passe ne sont pas identiques.',
             ))
         ;

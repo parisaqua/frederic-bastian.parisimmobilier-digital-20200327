@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row align-items-center pt-5 mb-3">
         <div class="col-md-8">
-            <h1><i class="fas fa-user"></i>&nbsp;&nbsp;Tous les individus</h1>
+            <h1><i class="fas fa-user"></i>&nbsp;&nbsp;Tous les individus ({{ users|length }})</h1>
         </div>
         <div class="col-md-4">
             <a href="{{ path('admin.user.new')}}" class="btn btn-info btn-right mb-2">Ajouter un individu</a>
